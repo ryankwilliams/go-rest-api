@@ -1,7 +1,7 @@
 package app
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/gin-gonic/gin"
 )
@@ -43,11 +43,9 @@ func getCar(c *gin.Context) {
 	var foundCar = Car{}
 	var httpStatus int
 	model := c.Param("make")
-	fmt.Println(c.Params)
 	for i := 0; i < len(allCars); i++ {
 		car := allCars[i]
 		if car.Model == model {
-			fmt.Println(car)
 			foundCar = car
 			httpStatus = 200
 			break
@@ -65,5 +63,8 @@ func StartApp() {
 	router.GET("/", index)
 	router.GET("/cars", cars)
 	router.GET("/cars/:make", getCar)
-	router.Run(":8000")
+	err := router.Run(":8000")
+	if err != nil {
+		log.Fatalf("Unable to start application: %s", err)
+	}
 }
