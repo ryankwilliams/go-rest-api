@@ -1,0 +1,8 @@
+### Access index endpoint
+GET http://0.0.0.0:8000/
+
+### Access cars endpoint
+GET http://0.0.0.0:8000/cars
+
+### Access cars endpoint to retrieve exact car based on make
+GET http://0.0.0.0:8000/cars/4Runner
